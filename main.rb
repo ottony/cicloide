@@ -4,10 +4,11 @@ class GameWindow < Gosu::Window
   def initialize
     super(900, 700, false)
     self.caption = "Cicloide Curve"
+    @curve = Curve.new(self)
   end
 
   def update
-
+    @curve.update
   end
 
   def draw
@@ -16,5 +17,6 @@ class GameWindow < Gosu::Window
               900,0,Gosu::Color::GRAY,
               0,700,Gosu::Color::GRAY,
               900,700,Gosu::Color::GRAY)
+    @curve.draw
   end
 end
