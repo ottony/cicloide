@@ -14,7 +14,7 @@ class Curve
 
   def draw
     @angles.each do |a|
-      Gosu::Font.new(@w, "Times New Roman", 20).draw("Index: " + a.to_s,0,0,0)
+      #Gosu::Font.new(@w, "Times New Roman", 20).draw("Index: " + a.to_s,0,0,0)
     end
   end
 end
