@@ -1,5 +1,5 @@
 require 'gosu'
-require './vector'
+require './point'
 
 class Curve
   attr_accessor :win
@@ -14,7 +14,6 @@ class Curve
     @r = 100
     
     @point_img = Gosu::Image.new(@win, 'point_image.png', true)
-    @vector_img = Gosu::Image.new(@win, 'vector_image.png', true)
 
   end
 
