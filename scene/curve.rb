@@ -1,46 +1,33 @@
-require 'gosu'
 require './models/equation'
 
 class Curve
   attr_accessor :win
   
-  def initialize(window)
+  def initialize(window, equation)
     @win =  window
     @t = 0
     @count_vector = 0;
     @points = []
     @vectors = []
-    @R = 100
-    @r = 100
-    
-    @point_img = Gosu::Image.new(@win, './media/point_image.png', true)
+    @equation = equation
+    @text = Gosu::Font.new(@win, "Times New Roman", 30)
 
   end
 
   def update
     if (@t <= Math::PI*2)
       @t += Math::PI/80
-      @points << get_point(@t)
+      @points << @equation.get_point(@t)
       @count_vector += 1
     elsif (@t<= Math::PI*4)
       @t += Math::PI/600
-      @points << get_point(@t)
+      @points << @equation.get_point(@t)
     end
   end
 
-  def get_point(angle)
-      Point.new(@point_img, x_position(angle), y_position(angle))
-  end
-
-  def x_position(angle)
-     (@R+@r)*Math.cos(angle) + @r*Math.sin(angle*(@R+@r)/@r - (Math::PI)/2)
-  end
-
-  def y_position(angle)
-      (@R+@r)*Math.sin(angle) - @r*Math.cos(angle*(@R+@r)/@r - (Math::PI)/2)
-  end
 
   def draw
+   # @text.draw("CTRL+SHIFT+r set R | CTRL+r set r ", 10,10,0)
     @points.each_with_index do |point, i|
       if (i > @count_vector)
         point.image.draw(point.x + 450,point.y + 350,0, 0.1, 0.1)

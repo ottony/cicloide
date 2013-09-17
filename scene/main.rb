@@ -4,7 +4,8 @@ class GameWindow < Gosu::Window
   def initialize
     super(900, 700, false)
     self.caption = "Cicloide Curve"
-    @curve = Curve.new(self)
+    @eq =  Equation.new(self) 
+    @curve = Curve.new(self,@eq)
   end
 
   def update
