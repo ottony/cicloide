@@ -1,3 +1,3 @@
-require './main'
+require './scene/main'
 
 (GameWindow.new).show
