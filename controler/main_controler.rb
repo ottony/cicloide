@@ -1,7 +1,7 @@
 require './models/curve'
 require './modules/modules'
 
-class GameWindow < Gosu::Window
+class MainControler < Gosu::Window
   def initialize
     super(900, 700, false)
     self.caption = "Cicloide Curve"
