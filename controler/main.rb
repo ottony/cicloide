@@ -1,4 +1,4 @@
-require './scene/curve'
+require './models/curve'
 require './modules/modules'
 
 class GameWindow < Gosu::Window
