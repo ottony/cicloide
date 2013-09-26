@@ -5,32 +5,36 @@ class MainControler < Gosu::Window
   def initialize
     super(900, 700, false)
     self.caption = "Cicloide Curve"
-    @eq =  Equation.new(self) 
-    @curve = Curve.new(self,@eq)
+    @equation =  Equation.new(self) 
+    @curve = Curve.new(self,@equation)
     @text = Gosu::Font.new(self, "Times New Roman", 30)
+    @msg = Gosu::Font.new(self, "Times New Roman", 20)
     @status = Status::NONE
-  end
+    @inputNumber = 1;
+    @keys = [Gosu::Kb1, Gosu::Kb2, Gosu::Kb3, Gosu::Kb4, Gosu::Kb5, Gosu::Kb6,Gosu::Kb7, Gosu::Kb8, Gosu::Kb9]
 
+  end
+  
   def update
     @curve.update
     if (@status == Status::NONE)
       self.controller(self.getKeys)
     end
+    if @inputNumber != 0
+      @curve.setCav(@inputNumber)
+      @inputNumber = 0
+      @curve.reload
+    end
   end
   
   def controller comb
-   @str = ""
-
     case comb
   
     when Controller::CONTROL*Controller::SHIFT*Controller::R
-      @str = "R"
       @status = Status::READING_R
     when Controller::CONTROL*Controller::R
-      @str = "r"
       @status = Status::READING_r
     else
-      @str = "||"
       @status = Status::NONE
     end
   
@@ -47,6 +51,12 @@ class MainControler < Gosu::Window
     if button_down? Gosu::KbR
       input *= Controller::R
     end
+
+    @keys.each_with_index do |key, i|
+      if button_down? key
+        @inputNumber = i+1
+      end
+    end
   end
   
   def draw
@@ -57,6 +67,7 @@ class MainControler < Gosu::Window
               900,700,Gosu::Color::GRAY)
     @curve.draw
 
-    @text.draw(@str, 10,10,0)
+    @text.draw(@inputNumber.to_s, 10,10,0)
+    @msg.draw("Develop by Ottony Costa", 10,680,0)
   end
 end
