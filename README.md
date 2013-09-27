@@ -1,4 +1,4 @@
 cicloide
 ========
 
-This draw cicloides whit Gosu library.
+This draw cicloides with Gosu library.
