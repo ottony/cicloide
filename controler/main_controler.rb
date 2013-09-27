@@ -1,12 +1,11 @@
-require './models/curve'
+require './models/cicloide'
 require './modules/modules'
 
 class MainControler < Gosu::Window
   def initialize
     super(900, 700, false)
     self.caption = "Cicloide Curve"
-    @equation =  Equation.new(self) 
-    @curve = Curve.new(self,@equation)
+    @cicloide = Cicloide.new(self)
     @text = Gosu::Font.new(self, "Times New Roman", 30)
     @msg = Gosu::Font.new(self, "Times New Roman", 20)
     @status = Status::NONE
@@ -16,14 +15,14 @@ class MainControler < Gosu::Window
   end
   
   def update
-    @curve.update
+    @cicloide.update
     if (@status == Status::NONE)
       self.controller(self.getKeys)
     end
     if @inputNumber != 0
-      @curve.setCav(@inputNumber)
+      @cicloide.setCav(@inputNumber)
       @inputNumber = 0
-      @curve.reload
+      @cicloide.reload
     end
   end
   
@@ -65,9 +64,8 @@ class MainControler < Gosu::Window
               900,0,Gosu::Color::GRAY,
               0,700,Gosu::Color::GRAY,
               900,700,Gosu::Color::GRAY)
-    @curve.draw
-
-    @text.draw(@inputNumber.to_s, 10,10,0)
+    @cicloide.draw
+    @msg.draw("Press 1, 2, 3, 4, 5, 6, 7, 8 or 9 to change numbers of 'entrace'", 10,10,0)
     @msg.draw("Develop by Ottony Costa", 10,680,0)
   end
 end
