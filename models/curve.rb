@@ -1,4 +1,4 @@
-require './models/equation'
+require './models/cicloide_equation_cartesian'
 
 class Curve
   attr_accessor :win
