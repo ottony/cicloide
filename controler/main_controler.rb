@@ -1,3 +1,4 @@
+require 'gosu'
 require './models/cicloide'
 require './modules/modules'
 
@@ -18,11 +19,12 @@ class MainControler < Gosu::Window
     @cicloide.update
     if (@status == Status::NONE)
       self.controller(self.getKeys)
+
+
     end
     if @inputNumber != 0
       @cicloide.setCav(@inputNumber)
       @inputNumber = 0
-      @cicloide.reload
     end
   end
   
@@ -56,6 +58,22 @@ class MainControler < Gosu::Window
         @inputNumber = i+1
       end
     end
+
+      if button_down? KbP
+        @cicloide.nowPolar
+      elsif button_down? KbC
+        @cicloide.nowCartesian
+      end
+
+      if button_down? KbUp
+        @cicloide.changeEntrace(:up)
+      elsif button_down? KbDown
+        @cicloide.changeEntrace(:down)
+      elsif button_down? KbLeft
+        @cicloide.changeEntrace(:left)
+      elsif button_down? KbRight
+        @cicloide.changeEntrace(:right)
+      end
   end
   
   def draw
@@ -65,7 +83,8 @@ class MainControler < Gosu::Window
               0,700,Gosu::Color::GRAY,
               900,700,Gosu::Color::GRAY)
     @cicloide.draw
-    @msg.draw("Press 1, 2, 3, 4, 5, 6, 7, 8 or 9 to change numbers of 'entrace'", 10,10,0)
+    @text.draw(@cicloide.getEquationString[0], 10,10,0)
+    @text.draw(@cicloide.getEquationString[1], 10,30,0)
     @msg.draw("Develop by Ottony Costa", 10,680,0)
   end
 end
