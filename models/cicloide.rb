@@ -7,6 +7,9 @@ class Cicloide < Curve
 
   def initialize(window)
     @window =  window
+    @cartesian_img = Gosu::Image.new(window, './media/plan.png', true)
+    @polar_img = Gosu::Image.new(window, './media/polar.png', true)
+    @plan_img = @polar_img 
     @t = 0
     @count_vector = 0;
     @points = []
@@ -34,11 +37,13 @@ class Cicloide < Curve
   end
   def nowPolar
     @current = @cicloide_polar
+    @plan_img = @polar_img
     self.reload
   end
 
   def nowCartesian
     @current = @cicloide_cartesian
+    @plan_img = @cartesian_img
     self.reload
   end
 
@@ -65,6 +70,7 @@ class Cicloide < Curve
   end
 
   def draw
+    @plan_img.draw(0,0,0,1,1)
     @points.each_with_index do |point, i|
       if (i > @count_vector)
         point.image.draw(aligneX(point.x),aligneY(point.y),0, 0.08, 0.08)

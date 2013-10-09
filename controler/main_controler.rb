@@ -78,13 +78,13 @@ class MainControler < Gosu::Window
   
   def draw
     #Quad
-    draw_quad(0,0,Gosu::Color::GRAY,
-              900,0,Gosu::Color::GRAY,
-              0,700,Gosu::Color::GRAY,
-              900,700,Gosu::Color::GRAY)
+    #draw_quad(0,0,Gosu::Color::GRAY,
+              #900,0,Gosu::Color::GRAY,
+              #0,700,Gosu::Color::GRAY,
+              #900,700,Gosu::Color::GRAY)
     @cicloide.draw
-    @text.draw(@cicloide.getEquationString[0], 10,10,0)
-    @text.draw(@cicloide.getEquationString[1], 10,30,0)
-    @msg.draw("Develop by Ottony Costa", 10,680,0)
+    @text.draw(@cicloide.getEquationString[0], 10,10,0,1,1,Gosu::Color::BLACK)
+    @text.draw(@cicloide.getEquationString[1], 10,30,0,1,1, Gosu::Color::BLACK)
+    @msg.draw("Develop by Ottony Costa", 10,680,0,1,1,Gosu::Color::BLACK)
   end
 end

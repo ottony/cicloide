@@ -15,12 +15,14 @@ class CicloideEquationPolar
   end
 
   def getEquationString
-    ["r = 1 #{@sense < 0 ? "+":"-"} #{@trigonometric.to_s}(t)", "Θ = t"]
+    ["r = 100*(1 #{@sense < 0 ? "+":"-"} #{@trigonometric.to_s}(t))", "Θ = t"]
   end
 
   protected
   def r(angle)
-      1 - @sense*Math.send(@trigonometric, angle)
+    #1 - @sense*Math.send(@trigonometric, angle)
+    #Math.cos(4*angle)
+    angle
   end  
 
   def x_position(angle)

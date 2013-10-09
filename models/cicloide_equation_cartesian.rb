@@ -16,6 +16,7 @@ class CicloideEquationCartesian
   end
 
   def getEquationString
+    #["X = (#{@R}+#{@r})*cos(t) + #{@r}*sin((t/#{@r})*(#{@R}+#{@r}) - PI/2)", "Y = (#{@R}+#{@r})*sin(t) + #{@r}*cos((t/r)*(#{@R}+#{@r}) - PI/2)"]
     ["X = (R+r)*cos(t) + r*sin((t/r)*(R+r) - PI/2)", "Y = (R+r)*sin(t) + r*cos((t/r)*(R+r) - PI/2)"]
   end
 
