@@ -7,13 +7,22 @@ def install_bundle
  sh "gem install bundler"
 end
 
-def call_blunder
+def call_bundle
   sh "bundle install"
+end
+
+def osx_install_dependecies
+ sh "gem install cocoapods"
 end
 
 task :default do
   install_dependecies
   install_bundle
-  call_blunder
+  call_bundle
 end
 
+task :osx do
+  osx_install_dependecies
+  install_bundle
+  call_bundle
+end
